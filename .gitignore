@@ -1,0 +1,8 @@
+# 配置文件
+config.json
+
+# 环境变量文件
+.env
+
+# macOS 桌面文件
+.DS_Store
