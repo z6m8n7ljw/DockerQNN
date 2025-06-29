@@ -9,13 +9,12 @@ ENV https_proxy=$HOST_HTTPS_PROXY
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    software-properties-common \
     shadowsocks-libev \
     proxychains4 \
     wget \
     curl \
     ca-certificates \
-    gnupg \
+    lsb-release \
     sudo \
     bc \
     clang \

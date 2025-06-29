@@ -6,6 +6,16 @@
 - ClashX
 - Docker Desktop
 
+```bash
+# 安装 Git LFS (以 macOS Homebrew 为例)
+brew install git-lfs
+
+# 初始化 LFS
+git lfs install
+
+git clone https://github.com/z6m8n7ljw/DockerQNN.git
+```
+
 ### 宿主机设置代理
 ClashX 需设置为`Allow connect from LAN`，同时将端口设置为`1080`。
 
