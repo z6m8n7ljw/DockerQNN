@@ -22,19 +22,18 @@ if [ ! -f "$INIT_MARKER" ]; then
     proxychains4 qpm-cli --login "$QCOM_USER" "$QCOM_PASSWORD"
     yes | proxychains4 qpm-cli --install qualcomm_ai_engine_direct -v 2.31.0.250130
 
-    echo "=> 安装 onnx 1.17.0..."
-    proxychains4 pip3 install onnx==1.17.0
+    echo "=> 安装 onnx..."
+    proxychains4 pip3 install onnx==1.18.0
+    proxychains4 pip3 install onnxruntime==1.22.1
+    proxychains4 pip3 install onnx-simplifier==0.4.36
+    pip3 install torch -i https://pypi.tuna.tsinghua.edu.cn/simple
+    proxychains4 pip3 install "numpy<2.0.0"
 
     echo "=> 下载并安装 Android NDK r26c..."
     cd /opt
     proxychains4 wget https://dl.google.com/android/repository/android-ndk-r26c-linux.zip
     unzip android-ndk-r26c-linux.zip
     rm android-ndk-r26c-linux.zip
-
-    export ANDROID_NDK_ROOT=/opt/android-ndk-r26c
-    export PATH=${ANDROID_NDK_ROOT}:${PATH}
-    echo "export ANDROID_NDK_ROOT=/opt/android-ndk-r26c" >> /etc/environment
-    echo "export PATH=\${ANDROID_NDK_ROOT}:\${PATH}" >> /etc/environment
 
     cd /app
     
@@ -44,9 +43,14 @@ else
     echo "=> 检测到标记文件，跳过初始化。"
 fi
 
+echo "=> 设置环境变量..."
+export ANDROID_NDK_ROOT=/opt/android-ndk-r26c
+export PATH=${ANDROID_NDK_ROOT}:${PATH}
+
 cd /app
-if [ -d "/opt/qcom/aistack/qairt/2.31.0.250130" ]; then
-    cd /opt/qcom/aistack/qairt/2.31.0.250130
+if [ -d "/opt/qcom/aistack/qairt/2.31.0.250130/bin" ]; then
+    cd /opt/qcom/aistack/qairt/2.31.0.250130/bin
+    source envsetup.sh
 fi
 
 echo "=> 容器已就绪。"

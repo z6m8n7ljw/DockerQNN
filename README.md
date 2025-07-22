@@ -62,11 +62,28 @@ QCOM_PASSWORD=xxx
 ```
 
 ## 容器启动
-若要更新镜像所安装的 Qualcomm AI Engine Direct SDK 版本，需修改 `entrypoint.sh` 中的 `proxychains4 qpm-cli --install qualcomm_ai_engine_direct -v 2.31.0.250130`, `cd qcom/aistack/qairt/2.31.0.250130` 以及 `run_container.sh` 中的 `docker exec -it $CONTAINER_ID bash -c "cd /opt/qcom/aistack/qairt/2.31.0.250130 && /bin/bash"`版本号。
+若要更新镜像所安装的 Qualcomm AI Engine Direct SDK 版本，需修改 `entrypoint.sh` 中的以下内容：
+```bash
+# ...
+proxychains4 qpm-cli --install qualcomm_ai_engine_direct -v 2.31.0.250130
+# ...
+cd qcom/aistack/qairt/2.31.0.250130/bin
+# ...
+```
+以及 `run_container.sh` 中的以下内容：
+```bash
+# ...
+docker exec -it $CONTAINER_ID bash -c 'export ANDROID_NDK_ROOT=/opt/android-ndk-r26c; export PATH=${ANDROID_NDK_ROOT}:${PATH}; cd /opt/qcom/aistack/qairt/2.31.0.250130/bin; source ./envsetup.sh >/dev/null 2>&1; exec /bin/bash'
+# ...
+```
 
-SDK 的依赖为 `Python 3.10`，`onnx 1.17.0`，`Android NDK r26c`，这些均在脚本中安装。
+SDK 的依赖为 `Python 3.10`，`onnx 1.18.0`，`onnxruntime 1.22.1`，`onnx-simplifier 0.4.36`，`Android NDK r26c`，这些均在脚本中安装。
 
 ```bash
 ./run_container.sh
 ```
 每次通过`exit`退出容器的交互式终端，下一次运行仍然执行此脚本。
+若需要映射宿主机的目录到容器中，则运行脚本时在后面添加宿主机目录，如：
+```bash
+./run_container.sh [宿主机目录]
+```

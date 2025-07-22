@@ -20,6 +20,7 @@ RUN apt-get update && \
     clang \
     build-essential \
     python3-pip \
+    vim \
     unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
