@@ -22,12 +22,19 @@ if [ ! -f "$INIT_MARKER" ]; then
     proxychains4 qpm-cli --login "$QCOM_USER" "$QCOM_PASSWORD"
     yes | proxychains4 qpm-cli --install qualcomm_ai_engine_direct -v 2.31.0.250130
 
-    echo "=> 安装 onnx..."
+    echo "=> 安装 Python 依赖..."
     proxychains4 pip3 install onnx==1.18.0
     proxychains4 pip3 install onnxruntime==1.22.1
     proxychains4 pip3 install onnx-simplifier==0.4.36
-    pip3 install torch -i https://pypi.tuna.tsinghua.edu.cn/simple
+    pip3 install torch==2.3.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
     proxychains4 pip3 install "numpy<2.0.0"
+    proxychains4 pip3 install pyyaml==6.0.1
+    proxychains4 pip3 install pandas==2.2.2
+    proxychains4 pip3 install decorator==5.1.1
+    proxychains4 pip3 install psutil==6.0.0
+    proxychains4 pip3 install scipy==1.13.1
+    proxychains4 pip3 install attrs==23.2.0
+    proxychains4 pip3 install pytest==8.3.2
 
     echo "=> 下载并安装 Android NDK r26c..."
     cd /opt

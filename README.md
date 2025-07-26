@@ -1,6 +1,5 @@
 # Qualcomm® AI Engine Direct SDK 镜像
 本项目为在 macOS (Apple Silicon) 上使用 Docker 构建安装了 Qualcomm®AI Engine Direct SDK 的 Ubuntu 22.04 (amd64) 环境。
-> *首次构建镜像并启动容器约 20 分钟。*
 
 ## 宿主机环境准备
 - ClashX
@@ -77,7 +76,7 @@ docker exec -it $CONTAINER_ID bash -c 'export ANDROID_NDK_ROOT=/opt/android-ndk-
 # ...
 ```
 
-SDK 的依赖为 `Python 3.10`，`onnx 1.18.0`，`onnxruntime 1.22.1`，`onnx-simplifier 0.4.36`，`Android NDK r26c`，这些均在脚本中安装。
+SDK 的依赖为 `Python 3.10`，`onnx 1.18.0`，`onnxruntime 1.22.1`，`onnx-simplifier 0.4.36`，`Android NDK r26c`… 这些均在脚本中安装。
 
 ```bash
 ./run_container.sh

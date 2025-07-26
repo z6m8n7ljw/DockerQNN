@@ -21,6 +21,8 @@ RUN apt-get update && \
     build-essential \
     python3-pip \
     vim \
+    libc++1 \
+    libtinfo5 \
     unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
